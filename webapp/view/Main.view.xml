@@ -2,6 +2,42 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="{i18n>deliveryNumber}" labelFor="deliveryInput" />
+                <HBox width="100%" alignItems="Center">
+                    <Input id="deliveryInput" value="{page>/search}" maxLength="10"
+                        placeholder="{i18n>deliveryPlaceholder}" submit=".onSearch">
+                        <layoutData><FlexItemData growFactor="1" /></layoutData>
+                    </Input>
+                    <Button icon="sap-icon://bar-code" tooltip="{i18n>scanDelivery}"
+                        enabled="{= !${page>/scanning} }" press=".onScan" class="sapUiTinyMarginBegin" />
+                    <Button text="{i18n>search}" press=".onSearch" class="sapUiTinyMarginBegin" />
+                </HBox>
+                <Table id="headerTable" items="{page>/headers}" busy="{page>/loading}"
+                    noDataText="{i18n>headerNoData}" class="sapUiSmallMarginTop">
+                    <columns>
+                        <Column><Text text="{i18n>deliveryNumber}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>customer}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>customerName}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>city}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>region}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>country}" /></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press=".onHeaderPress">
+                            <cells>
+                                <Text text="{page>Vbeln}" />
+                                <Text text="{page>Kunnr}" />
+                                <Text text="{page>Name1}" />
+                                <Text text="{page>Ort01}" />
+                                <Text text="{page>Regio}" />
+                                <Text text="{page>Land1}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
     </Page>
 </mvc:View>

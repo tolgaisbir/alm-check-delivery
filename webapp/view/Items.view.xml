@@ -1,0 +1,50 @@
+<mvc:View controllerName="zsddeliverychk.controller.Items"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page title="{i18n>itemsTitle}" showNavButton="{= !${page>/posting} }" navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <ObjectIdentifier title="{page>/vbeln}" text="{i18n>deliveryNumber}" />
+                <Label text="{i18n>barcode}" labelFor="barcodeInput" class="sapUiSmallMarginTop" />
+                <HBox width="100%" alignItems="Center">
+                    <Input id="barcodeInput" value="{page>/barcode}" placeholder="{i18n>barcodePlaceholder}"
+                        enabled="{= !${page>/posting} &amp;&amp; !${page>/scanning} }" submit=".onCreateItem">
+                        <layoutData><FlexItemData growFactor="1" /></layoutData>
+                    </Input>
+                    <Button icon="sap-icon://bar-code" tooltip="{i18n>scanBarcode}"
+                        enabled="{= !${page>/posting} &amp;&amp; !${page>/scanning} }"
+                        press=".onScan" class="sapUiTinyMarginBegin" />
+                    <Button text="{i18n>addItem}" enabled="{= !${page>/posting} &amp;&amp; !${page>/scanning} }"
+                        press=".onCreateItem" class="sapUiTinyMarginBegin" />
+                </HBox>
+                <Table id="itemsTable" items="{page>/items}" busy="{= ${page>/loading} || ${page>/posting} }"
+                    noDataText="{i18n>itemsNoData}" class="sapUiSmallMarginTop">
+                    <columns>
+                        <Column><Text text="{i18n>item}" /></Column>
+                        <Column><Text text="{i18n>material}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>description}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>quantity}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>unit}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>status}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>deliveryNumber}" /></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>barcode}" /></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{page>Posnr}" />
+                                <Text text="{page>Matnr}" />
+                                <Text text="{page>Arktx}" />
+                                <Text text="{page>Lfimg}" />
+                                <Text text="{page>Vrkme}" />
+                                <Text text="{page>Status}" />
+                                <Text text="{page>Vbeln}" />
+                                <Text text="{page>Barcode}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
