@@ -14,9 +14,12 @@ builder:
       afterTask: generateCachebusterInfo
       configuration:
         target:
-          destination: testing_100
+          destination: testing_100_CLONING
           url: http://vhapzds4ci.sap.almutahida.com.iq:44300
           client: '100'
+        cridentials:
+          username: env:user
+          password: env:pass
         app:
           name: ZSD_DELIVERYCHK
           description: Delivery Final Check
