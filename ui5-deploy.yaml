@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: zsddeliverychk
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: testing_100
+          url: http://vhapzds4ci.sap.almutahida.com.iq:44300
+          client: '100'
+        app:
+          name: ZSD_DELIVERYCHK
+          description: Delivery Final Check
+          package: ZFIORI
+          transport: DS4K904723
+        exclude:
+          - /test/
+          - /localService/
