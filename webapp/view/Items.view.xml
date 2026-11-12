@@ -30,14 +30,16 @@
                         <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>barcode}" /></Column>
                     </columns>
                     <items>
-                        <ColumnListItem>
+                        <ColumnListItem highlight="{= ${page>Status} === 'Checked' ? 'Success' : 'None' }">
                             <cells>
                                 <Text text="{page>Posnr}" />
                                 <Text text="{page>Matnr}" />
                                 <Text text="{page>Arktx}" />
                                 <Text text="{page>Lfimg}" />
                                 <Text text="{page>Vrkme}" />
-                                <Text text="{page>Status}" />
+                                <ObjectStatus text="{page>Status}"
+                                    state="{= ${page>Status} === 'Checked' ? 'Success' : 'None' }"
+                                    icon="{= ${page>Status} === 'Checked' ? 'sap-icon://sys-enter-2' : '' }" />
                                 <Text text="{page>Vbeln}" />
                                 <Text text="{page>Barcode}" />
                             </cells>
