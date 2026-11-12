@@ -23,9 +23,11 @@
                         <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>city}" /></Column>
                         <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>region}" /></Column>
                         <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>country}" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>status}" /></Column>
                     </columns>
                     <items>
-                        <ColumnListItem type="Navigation" press=".onHeaderPress">
+                        <ColumnListItem type="Navigation" press=".onHeaderPress"
+                            highlight="{= ${page>Status} === 'Delivery Checked OK' ? 'Success' : ${page>Status} === 'Delivery NOT OK' ? 'Error' : 'None' }">
                             <cells>
                                 <Text text="{page>Vbeln}" />
                                 <Text text="{page>Kunnr}" />
@@ -33,6 +35,9 @@
                                 <Text text="{page>Ort01}" />
                                 <Text text="{page>Regio}" />
                                 <Text text="{page>Land1}" />
+                                <ObjectStatus text="{page>Status}"
+                                    state="{= ${page>Status} === 'Delivery Checked OK' ? 'Success' : ${page>Status} === 'Delivery NOT OK' ? 'Error' : 'None' }"
+                                    icon="{= ${page>Status} === 'Delivery Checked OK' ? 'sap-icon://sys-enter-2' : ${page>Status} === 'Delivery NOT OK' ? 'sap-icon://error' : '' }" />
                             </cells>
                         </ColumnListItem>
                     </items>
